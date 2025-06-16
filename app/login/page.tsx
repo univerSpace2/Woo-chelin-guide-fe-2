@@ -54,8 +54,12 @@ export default function Page() {
             <div className="w-full max-w-md">
                 {/* 로고 및 타이틀 */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-500 rounded-full mb-4">
-                        <span className="text-2xl font-bold text-white">우</span>
+                    <div className="inline-flex items-center justify-center w-32 h-32 bg-orange-500 rounded-full mb-4">
+                        <img
+                            src="/woochelin.png"
+                            alt="우슐랭 로고"
+                            className="w-32 h-32 rounded-lg object-cover"
+                        />
                     </div>
                     <h1 className="text-3xl font-bold text-gray-800 mb-2">우슐랭</h1>
                     <p className="text-gray-600">회사 맛집을 공유하고 발견하세요</p>

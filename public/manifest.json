@@ -1,0 +1,77 @@
+{
+    "name": "우슐랭 - 우리 회사 맛집 가이드",
+    "short_name": "우슐랭",
+    "description": "동료들과 함께 만드는 회사 주변 맛집 리뷰 서비스",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#f97316",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "ko",
+    "categories": ["food", "lifestyle", "social"],
+    "icons": [
+        {
+            "src": "/woochelin.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/woochelin.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/woochelin.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/woochelin.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "/woochelin.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "/woochelin.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "/woochelin.png",
+            "sizes": "36x36",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/woochelin.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "platform": "wide",
+            "label": "우슐랭 메인 화면"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "맛집 찾기",
+            "short_name": "맛집 찾기",
+            "description": "주변 맛집 검색하기",
+            "url": "/?shortcut=search",
+            "icons": [{ "src": "/woochelin.png", "sizes": "96x96" }]
+        },
+        {
+            "name": "맛집 추가",
+            "short_name": "맛집 추가",
+            "description": "새로운 맛집 등록하기",
+            "url": "/add?shortcut=add",
+            "icons": [{ "src": "/woochelin.png", "sizes": "96x96" }]
+        }
+    ]
+}

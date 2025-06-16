@@ -115,7 +115,11 @@ export default function Page() {
             <div className="min-h-screen flex items-center justify-center bg-white">
                 <div className="text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-500 rounded-full mb-4 animate-pulse">
-                        <span className="text-2xl font-bold text-white">우</span>
+                        <img
+                            src="/woochelin.png"
+                            alt="우슐랭 로고"
+                            className="w-8 h-8 rounded-lg object-cover"
+                        />
                     </div>
                     <p className="text-gray-600">로딩 중...</p>
                 </div>
@@ -211,8 +215,12 @@ export default function Page() {
                 {/* 헤더 */}
                 <div className="p-4 border-b">
                     <div className="flex items-center gap-2 mb-4">
-                        <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
-                            <span className="text-white font-bold text-sm">우</span>
+                        <div className="w-8 h-8 flex items-center justify-center">
+                            <img
+                                src="/woochelin.png"
+                                alt="우슐랭 로고"
+                                className="w-8 h-8 rounded-lg object-cover"
+                            />
                         </div>
                         <h1 className="text-xl font-bold text-gray-800">우슐랭</h1>
                         {currentUser && (

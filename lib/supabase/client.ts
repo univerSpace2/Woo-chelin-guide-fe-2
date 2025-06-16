@@ -28,7 +28,7 @@ export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
 // 서버 사이드용 클라이언트 (Service Role Key 사용)
 export const supabaseAdmin = createClient<Database>(
     supabaseUrl,
-    process.env.SUPABASE_SERVICE_ROLE_KEY || supabaseAnonKey,
+    process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY || supabaseAnonKey,
     {
         auth: {
             autoRefreshToken: false,
