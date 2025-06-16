@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface Restaurant {
     id: number;
@@ -17,6 +18,7 @@ interface Restaurant {
 }
 
 export default function Page() {
+    const router = useRouter();
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedType, setSelectedType] = useState<'전체' | '점심' | '회식' | '카페'>('전체');
     const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
@@ -161,6 +163,10 @@ export default function Page() {
                                     평균 {selectedRestaurant.avgPrice}
                                 </p>
                                 <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        router.push('/detail');
+                                    }}
                                     className="bg-orange-500 text-white px-3 py-1 rounded text-sm hover:bg-orange-600"
                                     data-oid="edaow:i"
                                 >
@@ -241,7 +247,10 @@ export default function Page() {
                             <div
                                 key={restaurant.id}
                                 className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 cursor-pointer transition-all"
-                                onClick={() => setSelectedRestaurant(restaurant)}
+                                onClick={() => {
+                                    setSelectedRestaurant(restaurant);
+                                    router.push('/detail');
+                                }}
                                 data-oid="2aufgsu"
                             >
                                 <div className="flex gap-3" data-oid="jt_ws26">
