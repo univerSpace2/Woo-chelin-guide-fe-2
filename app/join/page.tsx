@@ -109,13 +109,13 @@ export default function Page() {
                     회원가입
                 </h1>
 
-                <form onSubmit={handleSubmit} className="space-y-6" data-oid="fk5fm6t">
+                <form onSubmit={handleSubmit} className="space-y-6" data-oid="7ei4kgj">
                     {/* 이메일 */}
-                    <div data-oid="i3inrpk">
+                    <div data-oid="dtovxmz">
                         <label
                             htmlFor="email"
                             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                            data-oid="kj1at65"
+                            data-oid="4m_9s6f"
                         >
                             이메일
                         </label>
@@ -127,22 +127,22 @@ export default function Page() {
                             onChange={handleInputChange}
                             className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
                             placeholder="이메일을 입력하세요"
-                            data-oid="vr0i:57"
+                            data-oid="86uwpgs"
                         />
 
                         {errors.email && (
-                            <p className="mt-1 text-sm text-red-600" data-oid="8rie0e1">
+                            <p className="mt-1 text-sm text-red-600" data-oid="v1sp_i:">
                                 {errors.email}
                             </p>
                         )}
                     </div>
 
                     {/* 이름 */}
-                    <div data-oid="uxxct2h">
+                    <div data-oid="qw2i:g2">
                         <label
                             htmlFor="name"
                             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                            data-oid="zfr:lop"
+                            data-oid="upjmi8o"
                         >
                             이름
                         </label>
@@ -154,22 +154,22 @@ export default function Page() {
                             onChange={handleInputChange}
                             className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
                             placeholder="이름을 입력하세요"
-                            data-oid="9ev5tww"
+                            data-oid="sy1qa:r"
                         />
 
                         {errors.name && (
-                            <p className="mt-1 text-sm text-red-600" data-oid="w7jssf7">
+                            <p className="mt-1 text-sm text-red-600" data-oid="v3sukrb">
                                 {errors.name}
                             </p>
                         )}
                     </div>
 
                     {/* 부서 */}
-                    <div data-oid="evd5:1v">
+                    <div data-oid="nc6st5d">
                         <label
                             htmlFor="department"
                             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                            data-oid="15-jtx:"
+                            data-oid="8ugmu5j"
                         >
                             부서
                         </label>
@@ -179,46 +179,46 @@ export default function Page() {
                             value={formData.department}
                             onChange={handleInputChange}
                             className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
-                            data-oid="2sqj7mp"
+                            data-oid="_oymaju"
                         >
-                            <option value="" data-oid="43le-cl">
+                            <option value="" data-oid="r1d8r5:">
                                 부서를 선택하세요
                             </option>
-                            <option value="개발팀" data-oid="vkxbulw">
+                            <option value="개발팀" data-oid="sol90pt">
                                 개발팀
                             </option>
-                            <option value="디자인팀" data-oid="6-b.k_-">
+                            <option value="디자인팀" data-oid="ibnqb3y">
                                 디자인팀
                             </option>
-                            <option value="마케팅팀" data-oid="alrwk2u">
+                            <option value="마케팅팀" data-oid="bgl8zhm">
                                 마케팅팀
                             </option>
-                            <option value="영업팀" data-oid="48pq1h8">
+                            <option value="영업팀" data-oid="t5:16j9">
                                 영업팀
                             </option>
-                            <option value="인사팀" data-oid="zn5ul24">
+                            <option value="인사팀" data-oid="is-oopw">
                                 인사팀
                             </option>
-                            <option value="재무팀" data-oid="s4eg47z">
+                            <option value="재무팀" data-oid="58fwecj">
                                 재무팀
                             </option>
-                            <option value="기타" data-oid="2xhc792">
+                            <option value="기타" data-oid="3j792pp">
                                 기타
                             </option>
                         </select>
                         {errors.department && (
-                            <p className="mt-1 text-sm text-red-600" data-oid="0.sp-in">
+                            <p className="mt-1 text-sm text-red-600" data-oid="p09_4i:">
                                 {errors.department}
                             </p>
                         )}
                     </div>
 
                     {/* 비밀번호 */}
-                    <div data-oid="z9:uent">
+                    <div data-oid="8b9:nti">
                         <label
                             htmlFor="password"
                             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                            data-oid="zwq-a4h"
+                            data-oid="32ph-tc"
                         >
                             비밀번호
                         </label>
@@ -230,22 +230,22 @@ export default function Page() {
                             onChange={handleInputChange}
                             className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
                             placeholder="비밀번호를 입력하세요"
-                            data-oid="wu5i:e."
+                            data-oid="vk2--67"
                         />
 
                         {errors.password && (
-                            <p className="mt-1 text-sm text-red-600" data-oid="e8z8w4t">
+                            <p className="mt-1 text-sm text-red-600" data-oid="ev70prs">
                                 {errors.password}
                             </p>
                         )}
                     </div>
 
                     {/* 비밀번호 재입력 */}
-                    <div data-oid="l8_rjo.">
+                    <div data-oid="ej54rvz">
                         <label
                             htmlFor="confirmPassword"
                             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                            data-oid="rd7c1l1"
+                            data-oid=".1nq:be"
                         >
                             비밀번호 재입력
                         </label>
@@ -257,26 +257,26 @@ export default function Page() {
                             onChange={handleInputChange}
                             className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
                             placeholder="비밀번호를 다시 입력하세요"
-                            data-oid="vh-wi24"
+                            data-oid="dfhb1cr"
                         />
 
                         {errors.confirmPassword && (
-                            <p className="mt-1 text-sm text-red-600" data-oid="ucak:y0">
+                            <p className="mt-1 text-sm text-red-600" data-oid="qwaupiw">
                                 {errors.confirmPassword}
                             </p>
                         )}
                     </div>
 
                     {/* 익명 이름 */}
-                    <div data-oid="h34_9e9">
+                    <div data-oid="nw5evks">
                         <label
                             htmlFor="anonymousName"
                             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                            data-oid="q.lz-f2"
+                            data-oid="jipxx-7"
                         >
                             익명 이름
                         </label>
-                        <div className="flex gap-2" data-oid="0vf-4.z">
+                        <div className="flex gap-2" data-oid="er-jhhv">
                             <input
                                 type="text"
                                 id="anonymousName"
@@ -285,20 +285,20 @@ export default function Page() {
                                 onChange={handleInputChange}
                                 className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"
                                 placeholder="익명 이름을 입력하세요"
-                                data-oid="vr2--q3"
+                                data-oid="z1nfvoj"
                             />
 
                             <button
                                 type="button"
                                 onClick={generateAnonymousName}
                                 className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
-                                data-oid="0zfevp-"
+                                data-oid="ooaen8f"
                             >
                                 생성
                             </button>
                         </div>
                         {errors.anonymousName && (
-                            <p className="mt-1 text-sm text-red-600" data-oid="ka:9n.2">
+                            <p className="mt-1 text-sm text-red-600" data-oid="2ia.38k">
                                 {errors.anonymousName}
                             </p>
                         )}
@@ -308,7 +308,7 @@ export default function Page() {
                     <button
                         type="submit"
                         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
-                        data-oid="jugdmrx"
+                        data-oid="w5i7ot5"
                     >
                         회원가입
                     </button>
