@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Script from 'next/script';
 export const metadata: Metadata = {
     title: '우슐랭 - 우리 회사 맛집 가이드',
     description: '동료들과 함께 만드는 회사 주변 맛집 리뷰 서비스',
@@ -98,10 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <link rel="icon" href="/woochelin.png" type="image/png" data-oid=":ac:92f" />
                 <link rel="apple-touch-icon" href="/woochelin.png" data-oid="-mzqxjl" />
             </head>
-            <body data-oid="1333h4u">
-                {children}
-                <Script src="/builtwith.js" strategy="afterInteractive" data-oid="w2udh7s" />
-            </body>
+            <body data-oid="1333h4u">{children}</body>
         </html>
     );
 }
