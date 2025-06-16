@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getCurrentUser } from '@/lib/supabase';
 import { getRestaurantDetail } from '@/lib/supabase/restaurants';
 import { createReview, getRestaurantReviews } from '@/lib/supabase/reviews';
 import type { RestaurantDetail, Photo, Review, MenuItem, ReviewWithComments } from '@/types';
 
-export default function DetailPage() {
+function DetailPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [activeTab, setActiveTab] = useState<'photos' | 'reviews' | 'menu'>('photos');
@@ -709,5 +709,36 @@ export default function DetailPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+function LoadingFallback() {
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-white" data-oid="xrcb0m2">
+            <div className="text-center" data-oid="jk1jc7n">
+                <div
+                    className="inline-flex items-center justify-center w-16 h-16 bg-orange-500 rounded-full mb-4 animate-pulse"
+                    data-oid="77tye.y"
+                >
+                    <img
+                        src="/woochelin.png"
+                        alt="우슐랭 로고"
+                        className="w-12 h-12 rounded-lg object-cover"
+                        data-oid="otewsg_"
+                    />
+                </div>
+                <p className="text-gray-600" data-oid="4-vtk5c">
+                    페이지를 불러오는 중...
+                </p>
+            </div>
+        </div>
+    );
+}
+
+export default function DetailPage() {
+    return (
+        <Suspense fallback={<LoadingFallback data-oid="ao:p.ix" />} data-oid="3..g2px">
+            <DetailPageContent data-oid="bp6h-:h" />
+        </Suspense>
     );
 }
