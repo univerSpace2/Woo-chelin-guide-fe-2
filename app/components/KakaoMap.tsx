@@ -65,19 +65,25 @@ export const KakaoMap = ({
     // API 키가 없는 경우 에러 메시지 표시
     if (!process.env.NEXT_PUBLIC_KAKAO_API_KEY) {
         return (
-            <div className="w-full h-full flex justify-center items-center bg-gray-100 rounded-lg">
-                <p className="text-gray-600">Kakao API 키가 설정되지 않았습니다.</p>
+            <div
+                className="w-full h-full flex justify-center items-center bg-gray-100 rounded-lg"
+                data-oid="xffpz4q"
+            >
+                <p className="text-gray-600" data-oid="cr81ntd">
+                    Kakao API 키가 설정되지 않았습니다.
+                </p>
             </div>
         );
     }
 
     return (
-        <div className="w-full h-full flex justify-center items-center">
+        <div className="w-full h-full flex justify-center items-center" data-oid="b1ega_t">
             {scriptLoad ? (
                 <Map
                     center={{ lat: latitude, lng: longitude }}
                     level={level}
                     className="w-full h-full"
+                    data-oid="mf08p87"
                 >
                     {restaurants.map((restaurant) => (
                         <MapMarker
@@ -85,18 +91,27 @@ export const KakaoMap = ({
                             position={{ lat: restaurant.lat, lng: restaurant.lng }}
                             onClick={() => onMarkerClick?.(restaurant)}
                             clickable={true}
+                            data-oid="zvb75i7"
                         >
-                            <div className="bg-white border border-gray-300 rounded-lg p-2 shadow-md">
-                                <div className="text-xs font-medium text-gray-800">
+                            <div
+                                className="bg-white border border-gray-300 rounded-lg p-2 shadow-md"
+                                data-oid=".f2r52x"
+                            >
+                                <div
+                                    className="text-xs font-medium text-gray-800"
+                                    data-oid="j7.ce8:"
+                                >
                                     {restaurant.name}
                                 </div>
-                                <div className="text-xs text-gray-600">{restaurant.category}</div>
+                                <div className="text-xs text-gray-600" data-oid="cu0-:68">
+                                    {restaurant.category}
+                                </div>
                             </div>
                         </MapMarker>
                     ))}
                 </Map>
             ) : (
-                <Loader />
+                <Loader data-oid="n7dyv9z" />
             )}
         </div>
     );

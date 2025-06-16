@@ -1,11 +1,15 @@
 import type { Metadata } from 'next';
 import './globals.css';
-
+import Script from 'next/script';
 export const metadata: Metadata = {
     title: '우슐랭 - 우리 회사 맛집 가이드',
     description: '동료들과 함께 만드는 회사 주변 맛집 리뷰 서비스',
     keywords: ['맛집', '회사', '리뷰', '음식', '점심', '회식', '카페'],
-    authors: [{ name: '우슐랭팀' }],
+    authors: [
+        {
+            name: '우슐랭팀',
+        },
+    ],
     creator: '우슐랭',
     publisher: '우슐랭',
     formatDetection: {
@@ -13,14 +17,16 @@ export const metadata: Metadata = {
         address: false,
         telephone: false,
     },
-    metadataBase: new URL('https://woochelin.com'), // 실제 도메인으로 변경 필요
+    metadataBase: new URL('https://woochelin.com'),
+    // 실제 도메인으로 변경 필요
     alternates: {
         canonical: '/',
     },
     openGraph: {
         title: '우슐랭 - 우리 회사 맛집 가이드',
         description: '동료들과 함께 만드는 회사 주변 맛집 리뷰 서비스',
-        url: 'https://woochelin.com', // 실제 도메인으로 변경 필요
+        url: 'https://woochelin.com',
+        // 실제 도메인으로 변경 필요
         siteName: '우슐랭',
         images: [
             {
@@ -42,14 +48,30 @@ export const metadata: Metadata = {
     },
     icons: {
         icon: [
-            { url: '/woochelin.png' },
-            { url: '/woochelin.png', sizes: '16x16', type: 'image/png' },
-            { url: '/woochelin.png', sizes: '32x32', type: 'image/png' },
+            {
+                url: '/woochelin.png',
+            },
+            {
+                url: '/woochelin.png',
+                sizes: '16x16',
+                type: 'image/png',
+            },
+            {
+                url: '/woochelin.png',
+                sizes: '32x32',
+                type: 'image/png',
+            },
         ],
         shortcut: '/woochelin.png',
         apple: [
-            { url: '/woochelin.png' },
-            { url: '/woochelin.png', sizes: '180x180', type: 'image/png' },
+            {
+                url: '/woochelin.png',
+            },
+            {
+                url: '/woochelin.png',
+                sizes: '180x180',
+                type: 'image/png',
+            },
         ],
         other: [
             {
@@ -68,16 +90,18 @@ export const metadata: Metadata = {
     referrer: 'origin-when-cross-origin',
     category: 'food',
 };
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="ko">
-            <head>
-                <link rel="icon" href="/woochelin.png" sizes="any" />
-                <link rel="icon" href="/woochelin.png" type="image/png" />
-                <link rel="apple-touch-icon" href="/woochelin.png" />
+        <html lang="ko" data-oid="p-f0jq0">
+            <head data-oid="55-d-sl">
+                <link rel="icon" href="/woochelin.png" sizes="any" data-oid="7j999d4" />
+                <link rel="icon" href="/woochelin.png" type="image/png" data-oid=":ac:92f" />
+                <link rel="apple-touch-icon" href="/woochelin.png" data-oid="-mzqxjl" />
             </head>
-            <body>{children}</body>
+            <body data-oid="1333h4u">
+                {children}
+                <Script src="/builtwith.js" strategy="afterInteractive" data-oid="w2udh7s" />
+            </body>
         </html>
     );
 }
