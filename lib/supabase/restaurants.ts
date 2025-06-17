@@ -216,13 +216,10 @@ export async function createRestaurant(
             }
         }
 
-        // TODO: 사진 업로드 처리 (formData.photos)
-        // 이 부분은 파일 업로드 기능과 함께 구현 예정
-
         return {
             success: true,
-            message: SUCCESS_MESSAGES.RESTAURANT_CREATED,
             data: restaurant,
+            message: SUCCESS_MESSAGES.RESTAURANT_CREATED,
         };
     } catch (error: any) {
         return {
@@ -402,6 +399,90 @@ export async function deleteMenuItem(menuItemId: number): Promise<ApiResponse<nu
         return {
             success: true,
             message: '메뉴가 삭제되었습니다.',
+        };
+    } catch (error: any) {
+        return {
+            success: false,
+            error: error.message || ERROR_MESSAGES.SERVER_ERROR,
+        };
+    }
+}
+
+// 모든 레스토랑의 통계 재계산 (리뷰수, 평점)
+export async function refreshAllRestaurantStats(): Promise<ApiResponse<null>> {
+    try {
+        // 모든 레스토랑 ID 가져오기
+        const { data: restaurants, error: restaurantError } = await supabase
+            .from('restaurants')
+            .select('id');
+
+        if (restaurantError) {
+            throw new Error(restaurantError.message);
+        }
+
+        if (!restaurants || restaurants.length === 0) {
+            return {
+                success: true,
+                data: null,
+                message: '업데이트할 레스토랑이 없습니다.',
+            };
+        }
+
+        // 각 레스토랑의 통계 재계산
+        for (const restaurant of restaurants) {
+            await refreshRestaurantStats(restaurant.id);
+        }
+
+        return {
+            success: true,
+            data: null,
+            message: `${restaurants.length}개 레스토랑의 통계가 업데이트되었습니다.`,
+        };
+    } catch (error: any) {
+        return {
+            success: false,
+            error: error.message || ERROR_MESSAGES.SERVER_ERROR,
+        };
+    }
+}
+
+// 특정 레스토랑의 통계 재계산 (리뷰수, 평점)
+export async function refreshRestaurantStats(restaurantId: number): Promise<ApiResponse<null>> {
+    try {
+        // 해당 레스토랑의 리뷰 통계 계산
+        const { data: reviewStats, error: statsError } = await supabase
+            .from('reviews')
+            .select('rating')
+            .eq('restaurant_id', restaurantId);
+
+        if (statsError) {
+            throw new Error(statsError.message);
+        }
+
+        const reviewCount = reviewStats?.length || 0;
+        const averageRating =
+            reviewCount > 0
+                ? reviewStats.reduce((sum, review) => sum + review.rating, 0) / reviewCount
+                : 0;
+
+        // 레스토랑 테이블 업데이트
+        const { error: updateError } = await supabase
+            .from('restaurants')
+            .update({
+                rating: Math.round(averageRating * 10) / 10, // 소수점 첫째자리까지
+                review_count: reviewCount,
+                updated_at: new Date().toISOString(),
+            })
+            .eq('id', restaurantId);
+
+        if (updateError) {
+            throw new Error(updateError.message);
+        }
+
+        return {
+            success: true,
+            data: null,
+            message: `레스토랑 ID ${restaurantId}의 통계가 업데이트되었습니다.`,
         };
     } catch (error: any) {
         return {

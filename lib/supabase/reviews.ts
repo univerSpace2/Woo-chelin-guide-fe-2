@@ -8,6 +8,7 @@ import type {
 } from '@/types';
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from '@/types/constants';
 import { supabase } from './client';
+import { refreshRestaurantStats } from './restaurants';
 
 // 리뷰 생성
 export async function createReview(
@@ -33,6 +34,9 @@ export async function createReview(
             throw new Error(error.message);
         }
 
+        // 레스토랑 통계 업데이트
+        await refreshRestaurantStats(formData.restaurantId);
+
         return {
             success: true,
             message: SUCCESS_MESSAGES.REVIEW_CREATED,
@@ -53,10 +57,10 @@ export async function updateReview(
     userId: string,
 ): Promise<ApiResponse<Review>> {
     try {
-        // 권한 확인
+        // 기존 리뷰 정보 가져오기 (권한 확인 및 레스토랑 ID 필요)
         const { data: review, error: checkError } = await supabase
             .from('reviews')
-            .select('author_id')
+            .select('author_id, restaurant_id')
             .eq('id', reviewId)
             .single();
 
@@ -83,6 +87,9 @@ export async function updateReview(
             throw new Error(error.message);
         }
 
+        // 레스토랑 통계 업데이트
+        await refreshRestaurantStats(review.restaurant_id);
+
         return {
             success: true,
             message: '리뷰가 수정되었습니다.',
@@ -99,10 +106,10 @@ export async function updateReview(
 // 리뷰 삭제
 export async function deleteReview(reviewId: number, userId: string): Promise<ApiResponse<null>> {
     try {
-        // 권한 확인
+        // 삭제 전 권한 확인 및 레스토랑 ID 가져오기
         const { data: review, error: checkError } = await supabase
             .from('reviews')
-            .select('author_id')
+            .select('author_id, restaurant_id')
             .eq('id', reviewId)
             .single();
 
@@ -123,6 +130,9 @@ export async function deleteReview(reviewId: number, userId: string): Promise<Ap
         if (error) {
             throw new Error(error.message);
         }
+
+        // 레스토랑 통계 업데이트
+        await refreshRestaurantStats(review.restaurant_id);
 
         return {
             success: true,

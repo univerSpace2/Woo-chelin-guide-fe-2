@@ -11,6 +11,7 @@ import {
     deleteReview,
 } from '@/lib/supabase/reviews';
 import { addMenuItem, deleteMenuItem, updateRestaurant } from '@/lib/supabase/restaurants';
+import { getDefaultRestaurantImage } from '@/lib/utils';
 import type { RestaurantDetail, Photo, Review, MenuItem, ReviewWithComments } from '@/types';
 
 function DetailPageContent() {
@@ -514,7 +515,10 @@ function DetailPageContent() {
                                 <img
                                     src={
                                         restaurant.main_image ||
-                                        'https://via.placeholder.com/400x300'
+                                        getDefaultRestaurantImage(
+                                            restaurant.type,
+                                            restaurant.category,
+                                        )
                                     }
                                     alt={restaurant.name}
                                     className="w-48 h-36 rounded-lg object-cover"
@@ -576,23 +580,18 @@ function DetailPageContent() {
                                         <span className="text-gray-500" data-oid="l.scx1u">
                                             ({reviews.length}개 리뷰)
                                         </span>
-                                        {reviews.length > 0 && (
-                                            <span className="text-xs text-orange-600 bg-orange-50 px-2 py-1 rounded">
-                                                실시간 평균
-                                            </span>
-                                        )}
                                     </div>
 
                                     <div className="space-y-2 text-gray-600" data-oid="jgsdkp5">
                                         <p data-oid="lt-qds.">
-                                            <span className="font-medium" data-oid=".xf2s0e">
+                                            <span className="font-bold" data-oid=".xf2s0e">
                                                 주소:
                                             </span>{' '}
                                             {restaurant.address}
                                         </p>
                                         {restaurant.phone && (
                                             <p data-oid="cd2oek8">
-                                                <span className="font-medium" data-oid="gc070mz">
+                                                <span className="font-bold" data-oid="gc070mz">
                                                     전화:
                                                 </span>{' '}
                                                 {restaurant.phone}
@@ -600,17 +599,21 @@ function DetailPageContent() {
                                         )}
                                         {restaurant.hours && (
                                             <p data-oid="8vg98t4">
-                                                <span className="font-medium" data-oid="nazth-a">
+                                                <span className="font-bold" data-oid="nazth-a">
                                                     영업시간:
                                                 </span>{' '}
                                                 {restaurant.hours}
                                             </p>
                                         )}
                                         <p data-oid="o81eld-">
-                                            <span className="font-medium" data-oid="-:nbkbs">
+                                            <span className="font-bold" data-oid="-:nbkbs">
                                                 평균 가격:
                                             </span>{' '}
-                                            {restaurant.avg_price}
+                                            {typeof restaurant.avg_price === 'string' &&
+                                            /^\d+$/.test(restaurant.avg_price)
+                                                ? parseInt(restaurant.avg_price).toLocaleString()
+                                                : restaurant.avg_price}{' '}
+                                            원
                                         </p>
                                     </div>
                                 </div>

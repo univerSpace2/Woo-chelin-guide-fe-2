@@ -2,21 +2,22 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { KakaoMap } from './components/KakaoMap';
+import { KakaoMap, type KakaoMapRef } from './components/KakaoMap';
 import { getCurrentUser } from '@/lib/supabase';
-import { getRestaurants } from '@/lib/supabase/restaurants';
+import { getRestaurants, refreshAllRestaurantStats } from '@/lib/supabase/restaurants';
+import { getDefaultRestaurantImage } from '@/lib/utils';
 import type { Restaurant, SearchParams } from '@/types';
 
 export default function Page() {
     const router = useRouter();
-    const mapRef = useRef<any>(null);
+    const mapRef = useRef<KakaoMapRef>(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedType, setSelectedType] = useState<'전체' | '점심' | '회식' | '카페'>('전체');
-    const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
     const [mapCenter, setMapCenter] = useState({ lat: 37.494539299776, lng: 127.037856255205 });
     const [isLoading, setIsLoading] = useState(true);
     const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
     const [currentUser, setCurrentUser] = useState<any>(null);
+    const [sortBy, setSortBy] = useState<'reviewDesc' | 'reviewAsc'>('reviewDesc');
 
     // 인증 상태 체크
     useEffect(() => {
@@ -28,6 +29,14 @@ export default function Page() {
                     return;
                 }
                 setCurrentUser(result.data);
+
+                // 통계 새로고침 실행 (백그라운드에서)
+                refreshAllRestaurantStats().then((result) => {
+                    if (result.success) {
+                        console.log('레스토랑 통계 업데이트 완료:', result.message);
+                    }
+                });
+
                 await loadRestaurants();
                 setIsLoading(false);
             } catch (error) {
@@ -46,13 +55,14 @@ export default function Page() {
                 filters: {
                     type: selectedType === '전체' ? [] : [selectedType as any],
                 },
-                sort: { field: 'rating', order: 'desc' },
+                sort: { field: 'review_count', order: 'desc' }, // 기본 정렬을 리뷰수로 변경
                 pagination: { page: 1, limit: 100 }, // 지도에서는 많은 데이터를 표시
             };
 
             const result = await getRestaurants(searchParams);
             if (result.success && result.data) {
                 setRestaurants(result.data);
+                console.log('로드된 레스토랑 데이터:', result.data); // 디버깅용
             } else {
                 console.error('레스토랑 데이터 로드 실패:', result.error);
                 setRestaurants([]);
@@ -79,23 +89,36 @@ export default function Page() {
         avgPrice: restaurant.avg_price,
         rating: restaurant.rating,
         reviewCount: restaurant.review_count,
-        image: restaurant.main_image || 'https://via.placeholder.com/300x200',
+        image:
+            restaurant.main_image ||
+            getDefaultRestaurantImage(restaurant.type, restaurant.category),
         hasZeroPay: restaurant.has_zero_pay,
         lat: restaurant.latitude,
         lng: restaurant.longitude,
     }));
 
-    // 마커 클릭 시 지도 중심 이동 및 선택된 식당 설정
+    // 정렬된 레스토랑 목록
+    const sortedRestaurants = [...restaurants].sort((a, b) => {
+        if (sortBy === 'reviewDesc') {
+            return b.review_count - a.review_count;
+        } else {
+            return a.review_count - b.review_count;
+        }
+    });
+
+    // 마커 클릭 시 지도 중심 이동
     const handleMarkerClick = (restaurant: any) => {
-        const originalRestaurant = restaurants.find((r) => r.id === restaurant.id);
-        setSelectedRestaurant(originalRestaurant || null);
         setMapCenter({ lat: restaurant.lat, lng: restaurant.lng });
     };
 
-    // 식당 리스트 클릭 시 지도 중심 이동
+    // 식당 리스트 클릭 시 지도 중심 이동 및 오버레이 표시
     const handleRestaurantClick = (restaurant: Restaurant) => {
         setMapCenter({ lat: restaurant.latitude, lng: restaurant.longitude });
-        setSelectedRestaurant(restaurant);
+        // 지도 컴포넌트에 선택된 레스토랑 정보 전달
+        const selectedRestaurant = mapRestaurants.find((r) => r.id === restaurant.id);
+        if (selectedRestaurant && mapRef.current) {
+            mapRef.current.selectRestaurant(selectedRestaurant);
+        }
     };
 
     const renderStars = (rating: number) => {
@@ -132,74 +155,13 @@ export default function Page() {
             {/* 메인 지도 영역 */}
             <div className="flex-1 relative">
                 <KakaoMap
+                    ref={mapRef}
                     latitude={mapCenter.lat}
                     longitude={mapCenter.lng}
                     level={1}
                     restaurants={mapRestaurants}
                     onMarkerClick={handleMarkerClick}
                 />
-
-                {/* 선택된 식당 정보 팝업 */}
-                {selectedRestaurant && (
-                    <div className="absolute bottom-4 left-4 right-80 bg-white rounded-lg shadow-xl p-4 z-10">
-                        <div className="flex justify-between items-start mb-3">
-                            <h3 className="text-lg font-bold text-gray-800">
-                                {selectedRestaurant.name}
-                            </h3>
-                            <button
-                                onClick={() => setSelectedRestaurant(null)}
-                                className="text-gray-400 hover:text-gray-600"
-                            >
-                                ✕
-                            </button>
-                        </div>
-                        <div className="flex gap-4">
-                            <img
-                                src={
-                                    selectedRestaurant.main_image ||
-                                    'https://via.placeholder.com/300x200'
-                                }
-                                alt={selectedRestaurant.name}
-                                className="w-20 h-20 rounded-lg object-cover"
-                            />
-
-                            <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
-                                    <span className="text-sm bg-orange-100 text-orange-600 px-2 py-1 rounded">
-                                        {selectedRestaurant.category}
-                                    </span>
-                                    <span className="text-sm bg-blue-100 text-blue-600 px-2 py-1 rounded">
-                                        {selectedRestaurant.type}
-                                    </span>
-                                    {selectedRestaurant.has_zero_pay && (
-                                        <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">
-                                            제로페이
-                                        </span>
-                                    )}
-                                </div>
-                                <div className="flex items-center gap-1 mb-1">
-                                    {renderStars(selectedRestaurant.rating)}
-                                    <span className="text-sm text-gray-600 ml-1">
-                                        {selectedRestaurant.rating} (
-                                        {selectedRestaurant.review_count}개 리뷰)
-                                    </span>
-                                </div>
-                                <p className="text-sm text-gray-600 mb-2">
-                                    평균 {selectedRestaurant.avg_price}
-                                </p>
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        router.push(`/detail?id=${selectedRestaurant.id}`);
-                                    }}
-                                    className="bg-orange-500 text-white px-3 py-1 rounded text-sm hover:bg-orange-600"
-                                >
-                                    더보기
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )}
 
                 {/* 플로팅 액션 버튼 */}
                 <button
@@ -244,7 +206,7 @@ export default function Page() {
                     </div>
 
                     {/* 카테고리 필터 */}
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 mb-4">
                         {['전체', '점심', '회식', '카페'].map((type) => (
                             <button
                                 key={type}
@@ -259,18 +221,31 @@ export default function Page() {
                             </button>
                         ))}
                     </div>
+
+                    {/* 정렬 선택 */}
+                    <div className="flex items-center justify-between">
+                        <button
+                            onClick={() =>
+                                setSortBy(sortBy === 'reviewDesc' ? 'reviewAsc' : 'reviewDesc')
+                            }
+                            className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-xs font-medium text-gray-700 transition-all"
+                        >
+                            <span>{sortBy === 'reviewDesc' ? '↓' : '↑'}</span>
+                            <span>{sortBy === 'reviewDesc' ? '리뷰 많은순' : '리뷰 적은순'}</span>
+                        </button>
+                    </div>
                 </div>
 
                 {/* 식당 목록 */}
                 <div className="flex-1 overflow-y-auto p-4">
-                    {restaurants.length === 0 ? (
+                    {sortedRestaurants.length === 0 ? (
                         <div className="text-center text-gray-500 mt-8">
                             <p>등록된 식당이 없습니다.</p>
                             <p className="text-sm mt-2">첫 번째 식당을 등록해보세요!</p>
                         </div>
                     ) : (
                         <div className="space-y-4">
-                            {restaurants.map((restaurant) => (
+                            {sortedRestaurants.map((restaurant) => (
                                 <div
                                     key={restaurant.id}
                                     className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 cursor-pointer transition-all"
@@ -280,7 +255,10 @@ export default function Page() {
                                         <img
                                             src={
                                                 restaurant.main_image ||
-                                                'https://via.placeholder.com/300x200'
+                                                getDefaultRestaurantImage(
+                                                    restaurant.type,
+                                                    restaurant.category,
+                                                )
                                             }
                                             alt={restaurant.name}
                                             className="w-16 h-16 rounded-lg object-cover"
@@ -310,7 +288,14 @@ export default function Page() {
                                                 </span>
                                             </div>
                                             <p className="text-xs text-gray-600">
-                                                평균 {restaurant.avg_price}
+                                                평균{' '}
+                                                {typeof restaurant.avg_price === 'string' &&
+                                                /^\d+$/.test(restaurant.avg_price)
+                                                    ? parseInt(
+                                                          restaurant.avg_price,
+                                                      ).toLocaleString()
+                                                    : restaurant.avg_price}{' '}
+                                                원
                                             </p>
                                         </div>
                                     </div>

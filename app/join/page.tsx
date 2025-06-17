@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signUp } from '@/lib/supabase';
 import type { SignUpFormData, FormErrors } from '@/types';
-import { DEPARTMENTS, ANONYMOUS_NAMES } from '@/types/constants';
+import { DEPARTMENTS, FRONT_PART, BACK_PART } from '@/types/constants';
 
 export default function Page() {
     const router = useRouter();
@@ -21,8 +21,10 @@ export default function Page() {
     const [isLoading, setIsLoading] = useState(false);
 
     const generateAnonymousName = () => {
-        const randomName = ANONYMOUS_NAMES[Math.floor(Math.random() * ANONYMOUS_NAMES.length)];
-        setFormData((prev) => ({ ...prev, anonymousName: randomName }));
+        const randomFront = FRONT_PART[Math.floor(Math.random() * FRONT_PART.length)];
+        const randomBack = BACK_PART[Math.floor(Math.random() * BACK_PART.length)];
+        const generatedName = `${randomFront} ${randomBack}`;
+        setFormData((prev) => ({ ...prev, anonymousName: generatedName }));
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
