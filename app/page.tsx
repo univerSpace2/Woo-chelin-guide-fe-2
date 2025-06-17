@@ -18,6 +18,7 @@ export default function Page() {
     const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
     const [currentUser, setCurrentUser] = useState<any>(null);
     const [sortBy, setSortBy] = useState<'reviewDesc' | 'reviewAsc'>('reviewDesc');
+    const [showZeroPayOnly, setShowZeroPayOnly] = useState(false);
 
     // 인증 상태 체크
     useEffect(() => {
@@ -54,6 +55,7 @@ export default function Page() {
                 query: searchQuery,
                 filters: {
                     type: selectedType === '전체' ? [] : [selectedType as any],
+                    hasZeroPay: showZeroPayOnly ? true : undefined,
                 },
                 sort: { field: 'review_count', order: 'desc' }, // 기본 정렬을 리뷰수로 변경
                 pagination: { page: 1, limit: 100 }, // 지도에서는 많은 데이터를 표시
@@ -78,7 +80,7 @@ export default function Page() {
         if (!isLoading && currentUser) {
             loadRestaurants();
         }
-    }, [searchQuery, selectedType, isLoading, currentUser]);
+    }, [searchQuery, selectedType, showZeroPayOnly, isLoading, currentUser]);
 
     // 지도에서 표시할 레스토랑 데이터 변환
     const mapRestaurants = restaurants.map((restaurant) => ({
@@ -152,28 +154,8 @@ export default function Page() {
 
     return (
         <div className="h-screen flex">
-            {/* 메인 지도 영역 */}
-            <div className="flex-1 relative">
-                <KakaoMap
-                    ref={mapRef}
-                    latitude={mapCenter.lat}
-                    longitude={mapCenter.lng}
-                    level={1}
-                    restaurants={mapRestaurants}
-                    onMarkerClick={handleMarkerClick}
-                />
-
-                {/* 플로팅 액션 버튼 */}
-                <button
-                    className="absolute bottom-6 right-6 bg-orange-500 text-white w-14 h-14 rounded-full shadow-lg hover:bg-orange-600 flex items-center justify-center text-2xl z-10"
-                    onClick={() => router.push('/add')}
-                >
-                    +
-                </button>
-            </div>
-
-            {/* 우측 사이드바 */}
-            <div className="w-80 bg-white shadow-lg flex flex-col">
+            {/* 좌측 사이드바 */}
+            <div className="w-96 bg-white shadow-lg flex flex-col">
                 {/* 헤더 */}
                 <div className="p-4 border-b">
                     <div className="flex items-center gap-2 mb-4">
@@ -205,8 +187,8 @@ export default function Page() {
                         <div className="absolute right-3 top-2.5 text-gray-400">🔍</div>
                     </div>
 
-                    {/* 카테고리 필터 */}
-                    <div className="flex gap-2 mb-4">
+                    {/* 카테고리 및 제로페이 필터 */}
+                    <div className="flex gap-2 mb-4 flex-wrap">
                         {['전체', '점심', '회식', '카페'].map((type) => (
                             <button
                                 key={type}
@@ -220,6 +202,16 @@ export default function Page() {
                                 {type}
                             </button>
                         ))}
+                        <button
+                            onClick={() => setShowZeroPayOnly(!showZeroPayOnly)}
+                            className={`px-3 py-1 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${
+                                showZeroPayOnly
+                                    ? 'bg-green-500 text-white'
+                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                            }`}
+                        >
+                            <span>제로페이</span>
+                        </button>
                     </div>
 
                     {/* 정렬 선택 */}
@@ -307,8 +299,28 @@ export default function Page() {
 
                 {/* 푸터 */}
                 <div className="text-center p-4 border-t text-sm text-gray-500">
-                    <p>© 2024 우슐랭. 모든 권리 보유.</p>
+                    <p>© 2025 우슐랭. 모든 권리 보유.</p>
                 </div>
+            </div>
+
+            {/* 메인 지도 영역 */}
+            <div className="flex-1 relative">
+                <KakaoMap
+                    ref={mapRef}
+                    latitude={mapCenter.lat}
+                    longitude={mapCenter.lng}
+                    level={1}
+                    restaurants={mapRestaurants}
+                    onMarkerClick={handleMarkerClick}
+                />
+
+                {/* 플로팅 액션 버튼 */}
+                <button
+                    className="absolute bottom-6 right-6 bg-orange-500 text-white w-14 h-14 rounded-full shadow-lg hover:bg-orange-600 flex items-center justify-center text-2xl z-10"
+                    onClick={() => router.push('/add')}
+                >
+                    +
+                </button>
             </div>
         </div>
     );
