@@ -16,27 +16,7 @@ export async function createReview(
     userName: string,
 ): Promise<ApiResponse<Review>> {
     try {
-        // 이미 리뷰를 작성했는지 확인
-        const { data: existingReview, error: checkError } = await supabase
-            .from('reviews')
-            .select('id')
-            .eq('restaurant_id', formData.restaurantId)
-            .eq('author_id', userId)
-            .single();
-
-        if (checkError && checkError.code !== 'PGRST116') {
-            // PGRST116: No rows returned
-            throw new Error(checkError.message);
-        }
-
-        if (existingReview) {
-            return {
-                success: false,
-                error: '이미 이 레스토랑에 리뷰를 작성하셨습니다.',
-            };
-        }
-
-        // 리뷰 생성
+        // 리뷰 생성 (중복 체크 제거 - 여러 리뷰 작성 가능)
         const { data, error } = await supabase
             .from('reviews')
             .insert({

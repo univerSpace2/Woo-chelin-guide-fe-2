@@ -8,6 +8,11 @@ export const FOOD_CATEGORIES = [
     '양식',
     '카페',
     '패스트푸드',
+    '편의점',
+    '주점',
+    '치킨',
+    '피자',
+    '디저트',
     '기타',
 ] as const;
 
@@ -21,12 +26,14 @@ export type RestaurantType = (typeof RESTAURANT_TYPES)[number];
 // 부서 목록
 export const DEPARTMENTS = [
     '개발팀',
-    '디자인팀',
-    '마케팅팀',
-    '영업팀',
-    '인사팀',
-    '재무팀',
-    '기타',
+    '상담팀',
+    'CM팀',
+    '매니징팀',
+    '원격팀',
+    '경영기획팀',
+    '사업전략부',
+    '교육사업부',
+    '온라인사업부',
 ] as const;
 
 export type Department = (typeof DEPARTMENTS)[number];
@@ -57,7 +64,7 @@ export const DEFAULTS = {
 
 // 파일 업로드 제한
 export const FILE_CONSTRAINTS = {
-    MAX_FILE_SIZE: 5 * 1024 * 1024, // 5MB
+    MAX_FILE_SIZE: 50 * 1024 * 1024, // 50MB
     MAX_FILES_COUNT: 10,
     ALLOWED_TYPES: ['image/jpeg', 'image/png', 'image/webp'],
     ALLOWED_EXTENSIONS: ['.jpg', '.jpeg', '.png', '.webp'],

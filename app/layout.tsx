@@ -9,6 +9,7 @@ export const metadata: Metadata = {
             name: '우슐랭팀',
         },
     ],
+
     creator: '우슐랭',
     publisher: '우슐랭',
     formatDetection: {
@@ -35,6 +36,7 @@ export const metadata: Metadata = {
                 alt: '우슐랭 로고',
             },
         ],
+
         locale: 'ko_KR',
         type: 'website',
     },
@@ -61,6 +63,7 @@ export const metadata: Metadata = {
                 type: 'image/png',
             },
         ],
+
         shortcut: '/woochelin.png',
         apple: [
             {
@@ -72,6 +75,7 @@ export const metadata: Metadata = {
                 type: 'image/png',
             },
         ],
+
         other: [
             {
                 rel: 'apple-touch-icon-precomposed',
@@ -91,13 +95,13 @@ export const metadata: Metadata = {
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="ko" data-oid="p-f0jq0">
-            <head data-oid="55-d-sl">
-                <link rel="icon" href="/woochelin.png" sizes="any" data-oid="7j999d4" />
-                <link rel="icon" href="/woochelin.png" type="image/png" data-oid=":ac:92f" />
-                <link rel="apple-touch-icon" href="/woochelin.png" data-oid="-mzqxjl" />
+        <html lang="ko">
+            <head>
+                <link rel="icon" href="/woochelin.png" sizes="any" />
+                <link rel="icon" href="/woochelin.png" type="image/png" />
+                <link rel="apple-touch-icon" href="/woochelin.png" />
             </head>
-            <body data-oid="1333h4u">{children}</body>
+            <body>{children}</body>
         </html>
     );
 }

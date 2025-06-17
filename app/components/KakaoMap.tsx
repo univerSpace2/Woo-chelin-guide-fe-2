@@ -67,9 +67,9 @@ export const KakaoMap = ({
         return (
             <div
                 className="w-full h-full flex justify-center items-center bg-gray-100 rounded-lg"
-                data-oid="xffpz4q"
+                data-oid="68uja8_"
             >
-                <p className="text-gray-600" data-oid="cr81ntd">
+                <p className="text-gray-600" data-oid="f5lgm3r">
                     Kakao API 키가 설정되지 않았습니다.
                 </p>
             </div>
@@ -77,13 +77,13 @@ export const KakaoMap = ({
     }
 
     return (
-        <div className="w-full h-full flex justify-center items-center" data-oid="b1ega_t">
+        <div className="w-full h-full flex justify-center items-center" data-oid="iq.jx_y">
             {scriptLoad ? (
                 <Map
                     center={{ lat: latitude, lng: longitude }}
                     level={level}
                     className="w-full h-full"
-                    data-oid="mf08p87"
+                    data-oid="1f2.:l4"
                 >
                     {restaurants.map((restaurant) => (
                         <MapMarker
@@ -91,19 +91,19 @@ export const KakaoMap = ({
                             position={{ lat: restaurant.lat, lng: restaurant.lng }}
                             onClick={() => onMarkerClick?.(restaurant)}
                             clickable={true}
-                            data-oid="zvb75i7"
+                            data-oid="gtti8j8"
                         >
                             <div
                                 className="bg-white border border-gray-300 rounded-lg p-2 shadow-md"
-                                data-oid=".f2r52x"
+                                data-oid="z:zvlep"
                             >
                                 <div
                                     className="text-xs font-medium text-gray-800"
-                                    data-oid="j7.ce8:"
+                                    data-oid="qu9qbzc"
                                 >
                                     {restaurant.name}
                                 </div>
-                                <div className="text-xs text-gray-600" data-oid="cu0-:68">
+                                <div className="text-xs text-gray-600" data-oid="3sq:vaw">
                                     {restaurant.category}
                                 </div>
                             </div>
@@ -111,7 +111,7 @@ export const KakaoMap = ({
                     ))}
                 </Map>
             ) : (
-                <Loader data-oid="n7dyv9z" />
+                <Loader data-oid="2yhzfz_" />
             )}
         </div>
     );

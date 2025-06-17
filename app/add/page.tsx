@@ -197,21 +197,21 @@ export default function AddPage() {
         return (
             <div
                 className="min-h-screen flex items-center justify-center bg-white"
-                data-oid="e9d.l1s"
+                data-oid="nl:.q.k"
             >
-                <div className="text-center" data-oid="an2hjsz">
+                <div className="text-center" data-oid="-_y-_8n">
                     <div
                         className="inline-flex items-center justify-center w-16 h-16 bg-orange-500 rounded-full mb-4 animate-pulse"
-                        data-oid=".6fnwas"
+                        data-oid="ne6j8:l"
                     >
                         <img
                             src="/woochelin.png"
                             alt="우슐랭 로고"
                             className="w-8 h-8 rounded-lg object-cover"
-                            data-oid="v3e0o92"
+                            data-oid="h:acf6w"
                         />
                     </div>
-                    <p className="text-gray-600" data-oid="-m1whi9">
+                    <p className="text-gray-600" data-oid="oqs7yco">
                         로딩 중...
                     </p>
                 </div>
@@ -220,36 +220,36 @@ export default function AddPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50" data-oid="_xc5f8-">
+        <div className="min-h-screen bg-gray-50" data-oid="ysah85:">
             {/* 헤더 */}
-            <div className="bg-white shadow-sm border-b" data-oid="iyavav4">
-                <div className="max-w-4xl mx-auto px-4 py-4" data-oid="_ll9u8r">
-                    <div className="flex items-center gap-4" data-oid="jftoykz">
+            <div className="bg-white shadow-sm border-b" data-oid="0zjnk0q">
+                <div className="max-w-4xl mx-auto px-4 py-4" data-oid="at7_ecp">
+                    <div className="flex items-center gap-4" data-oid="u4vz-yr">
                         <button
                             onClick={() => router.back()}
                             className="text-gray-600 hover:text-gray-800 text-xl"
-                            data-oid="tg-y38e"
+                            data-oid="uvj:7m6"
                         >
                             ← 뒤로가기
                         </button>
-                        <div className="flex items-center gap-2" data-oid="ojedql1">
+                        <div className="flex items-center gap-2" data-oid="6nqptec">
                             <div
                                 className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center"
-                                data-oid="cbr_mkf"
+                                data-oid="v35wsk_"
                             >
                                 <img
                                     src="/woochelin.png"
                                     alt="우슐랭 로고"
                                     className="w-8 h-8 rounded-lg object-cover"
-                                    data-oid="f5r7gzi"
+                                    data-oid="3i3uqty"
                                 />
                             </div>
-                            <h1 className="text-xl font-bold text-gray-800" data-oid="i:8lpdi">
+                            <h1 className="text-xl font-bold text-gray-800" data-oid="xg3wnts">
                                 우슐랭 - 가게 추가하기
                             </h1>
                         </div>
                         {currentUser && (
-                            <span className="text-sm text-gray-600 ml-auto" data-oid="hxjclnu">
+                            <span className="text-sm text-gray-600 ml-auto" data-oid="eecfae:">
                                 {currentUser.profile.name}님
                             </span>
                         )}
@@ -257,18 +257,18 @@ export default function AddPage() {
                 </div>
             </div>
 
-            <div className="max-w-4xl mx-auto px-4 py-6" data-oid="htmk_wa">
+            <div className="max-w-4xl mx-auto px-4 py-6" data-oid="y.m:3cb">
                 {!showForm ? (
                     /* 가게 검색 섹션 */
-                    <div className="bg-white rounded-lg shadow-sm p-6" data-oid="0yl_n-d">
-                        <h2 className="text-xl font-bold text-gray-800 mb-4" data-oid="wuw:w6q">
+                    <div className="bg-white rounded-lg shadow-sm p-6" data-oid="4lule.w">
+                        <h2 className="text-xl font-bold text-gray-800 mb-4" data-oid="lin--zo">
                             가게 검색
                         </h2>
-                        <p className="text-gray-600 mb-6" data-oid="vmk2vp8">
+                        <p className="text-gray-600 mb-6" data-oid="kxmnit1">
                             카카오 지도에서 가게를 검색하여 기본 정보를 가져옵니다.
                         </p>
 
-                        <div className="flex gap-3 mb-6" data-oid="_g6:oy.">
+                        <div className="flex gap-3 mb-6" data-oid="yv7pzsd">
                             <input
                                 type="text"
                                 value={searchQuery}
@@ -277,14 +277,14 @@ export default function AddPage() {
                                 className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                                 placeholder="가게명을 입력하세요 (예: 맛있는 한식당, 스타벅스)"
                                 disabled={isSearching}
-                                data-oid=":pr2oyg"
+                                data-oid="j1l.2te"
                             />
 
                             <button
                                 onClick={searchPlaces}
                                 disabled={isSearching || !searchQuery.trim()}
                                 className="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed"
-                                data-oid="gjpzt7g"
+                                data-oid=":bvpda1"
                             >
                                 {isSearching ? '검색 중...' : '검색'}
                             </button>
@@ -294,12 +294,12 @@ export default function AddPage() {
                         {searchError && (
                             <div
                                 className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg"
-                                data-oid="94pu5bl"
+                                data-oid="y2q26pt"
                             >
-                                <p className="text-red-600" data-oid="f92stci">
+                                <p className="text-red-600" data-oid="m62-odw">
                                     {searchError}
                                 </p>
-                                <p className="text-red-500 text-sm mt-1" data-oid=".gyjzy_">
+                                <p className="text-red-500 text-sm mt-1" data-oid="vn8mqqz">
                                     💡 팁: 카카오 API 키가 설정되지 않았다면 .env.local 파일에
                                     NEXT_PUBLIC_KAKAO_REST_API_KEY를 추가해주세요.
                                 </p>
@@ -308,8 +308,8 @@ export default function AddPage() {
 
                         {/* 검색 결과 */}
                         {searchResults.length > 0 && (
-                            <div className="space-y-3" data-oid="bphxjac">
-                                <h3 className="font-medium text-gray-800" data-oid="sv0g9lj">
+                            <div className="space-y-3" data-oid="axjon3m">
+                                <h3 className="font-medium text-gray-800" data-oid="ae1qlef">
                                     검색 결과 ({searchResults.length}개)
                                 </h3>
                                 {searchResults.map((result) => (
@@ -317,32 +317,32 @@ export default function AddPage() {
                                         key={result.id}
                                         className="border border-gray-200 rounded-lg p-4 hover:border-orange-300 hover:bg-orange-50 cursor-pointer transition-all"
                                         onClick={() => selectPlace(result)}
-                                        data-oid="eexywli"
+                                        data-oid="k2hnb3y"
                                     >
                                         <div
                                             className="flex justify-between items-start"
-                                            data-oid="wqvf:-g"
+                                            data-oid="0_1h-7q"
                                         >
-                                            <div className="flex-1" data-oid="vuh5-g3">
+                                            <div className="flex-1" data-oid="0tmzy1f">
                                                 <h4
                                                     className="font-medium text-gray-800 mb-2"
-                                                    data-oid=":7o19eo"
+                                                    data-oid="skr9i_u"
                                                 >
                                                     {result.place_name}
                                                 </h4>
                                                 <div
                                                     className="text-sm text-gray-600 space-y-1"
-                                                    data-oid="q5i3.0r"
+                                                    data-oid="9zm3a70"
                                                 >
-                                                    <p data-oid="khvx1vb">
+                                                    <p data-oid="elcgyf5">
                                                         📍{' '}
                                                         {result.road_address_name ||
                                                             result.address_name}
                                                     </p>
                                                     {result.phone && (
-                                                        <p data-oid="_vtsh._">📞 {result.phone}</p>
+                                                        <p data-oid="rl11vy:">📞 {result.phone}</p>
                                                     )}
-                                                    <p data-oid="hl:aqiz">
+                                                    <p data-oid="i5ctut0">
                                                         🏷️ {result.category_name}
                                                     </p>
                                                 </div>
@@ -350,7 +350,7 @@ export default function AddPage() {
                                             {result.category_group_name && (
                                                 <span
                                                     className="bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs"
-                                                    data-oid="r7_-3z_"
+                                                    data-oid="pllxb-7"
                                                 >
                                                     {result.category_group_name}
                                                 </span>
@@ -362,8 +362,8 @@ export default function AddPage() {
                         )}
 
                         {/* 직접 입력 옵션 */}
-                        <div className="mt-8 pt-6 border-t border-gray-200" data-oid="a8eo9-x">
-                            <p className="text-gray-600 mb-4" data-oid="4hffsq7">
+                        <div className="mt-8 pt-6 border-t border-gray-200" data-oid="ohg_ayf">
+                            <p className="text-gray-600 mb-4" data-oid="oce6uaz">
                                 원하는 가게가 검색되지 않나요?
                             </p>
                             <button
@@ -381,7 +381,7 @@ export default function AddPage() {
                                     });
                                 }}
                                 className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
-                                data-oid="2zy42y4"
+                                data-oid="y0ydmwo"
                             >
                                 직접 입력하기
                             </button>
@@ -389,18 +389,18 @@ export default function AddPage() {
                     </div>
                 ) : (
                     /* 가게 정보 입력 폼 */
-                    <form onSubmit={handleSubmit} className="space-y-6" data-oid="h8wqt-.">
+                    <form onSubmit={handleSubmit} className="space-y-6" data-oid=".cl5wpl">
                         {/* 선택된 장소 정보 표시 */}
                         {selectedPlace && (
                             <div
                                 className="bg-blue-50 border border-blue-200 rounded-lg p-4"
-                                data-oid="5_m4nzn"
+                                data-oid="m3ujs4c"
                             >
                                 <div
                                     className="flex justify-between items-start mb-2"
-                                    data-oid="qw5h:3b"
+                                    data-oid="8xpm12k"
                                 >
-                                    <h3 className="font-medium text-blue-800" data-oid="5o.1c-v">
+                                    <h3 className="font-medium text-blue-800" data-oid="d8sizpa">
                                         선택된 장소
                                     </h3>
                                     <button
@@ -410,33 +410,33 @@ export default function AddPage() {
                                             setSelectedPlace(null);
                                         }}
                                         className="text-blue-600 hover:text-blue-800 text-sm"
-                                        data-oid="02augv5"
+                                        data-oid="n3xb5mt"
                                     >
                                         다시 검색하기
                                     </button>
                                 </div>
-                                <p className="text-blue-700 font-medium" data-oid="gji-tqu">
+                                <p className="text-blue-700 font-medium" data-oid="hec-ro3">
                                     {selectedPlace.place_name}
                                 </p>
-                                <p className="text-blue-600 text-sm" data-oid="_7vdpn1">
+                                <p className="text-blue-600 text-sm" data-oid="zmq3602">
                                     {selectedPlace.road_address_name || selectedPlace.address_name}
                                 </p>
                             </div>
                         )}
 
                         {/* 기본 정보 */}
-                        <div className="bg-white rounded-lg shadow-sm p-6" data-oid="jrcuqq.">
-                            <h2 className="text-xl font-bold text-gray-800 mb-4" data-oid="tvw8fys">
+                        <div className="bg-white rounded-lg shadow-sm p-6" data-oid="rjxb2--">
+                            <h2 className="text-xl font-bold text-gray-800 mb-4" data-oid="l_opjkk">
                                 기본 정보
                             </h2>
                             <div
                                 className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                                data-oid="4ughvxf"
+                                data-oid="8fg2bqk"
                             >
-                                <div data-oid="88noct:">
+                                <div data-oid="kmu4.5y">
                                     <label
                                         className="block text-sm font-medium text-gray-700 mb-2"
-                                        data-oid="gp_lnam"
+                                        data-oid="fvqy_kb"
                                     >
                                         가게명 *
                                     </label>
@@ -449,13 +449,13 @@ export default function AddPage() {
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                                         required
                                         placeholder="가게 이름을 입력하세요"
-                                        data-oid="68pij9h"
+                                        data-oid="g.162.."
                                     />
                                 </div>
-                                <div data-oid="3j7sse_">
+                                <div data-oid="8ptcgkp">
                                     <label
                                         className="block text-sm font-medium text-gray-700 mb-2"
-                                        data-oid="eci71b2"
+                                        data-oid="z-yhb20"
                                     >
                                         전화번호
                                     </label>
@@ -467,13 +467,13 @@ export default function AddPage() {
                                         }
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                                         placeholder="전화번호를 입력하세요"
-                                        data-oid="odi-4df"
+                                        data-oid="hg1o4:5"
                                     />
                                 </div>
-                                <div className="md:col-span-2" data-oid="m4l2-vx">
+                                <div className="md:col-span-2" data-oid="ejort9w">
                                     <label
                                         className="block text-sm font-medium text-gray-700 mb-2"
-                                        data-oid="uugjm4n"
+                                        data-oid="odrjn1f"
                                     >
                                         주소 {selectedPlace ? '' : '*'}
                                     </label>
@@ -489,25 +489,25 @@ export default function AddPage() {
                                         readOnly={!!selectedPlace}
                                         required={!selectedPlace}
                                         placeholder="주소를 입력하세요"
-                                        data-oid="6xu.0wl"
+                                        data-oid=":c9gnpf"
                                     />
                                 </div>
                             </div>
                         </div>
 
                         {/* 분류 정보 */}
-                        <div className="bg-white rounded-lg shadow-sm p-6" data-oid="ior2zzy">
-                            <h2 className="text-xl font-bold text-gray-800 mb-4" data-oid="8chfdrn">
+                        <div className="bg-white rounded-lg shadow-sm p-6" data-oid="k1iyq_n">
+                            <h2 className="text-xl font-bold text-gray-800 mb-4" data-oid="smn8b0u">
                                 분류 정보
                             </h2>
                             <div
                                 className="grid grid-cols-1 md:grid-cols-3 gap-4"
-                                data-oid="zpvykw3"
+                                data-oid="ilafd:d"
                             >
-                                <div data-oid="4ysusnx">
+                                <div data-oid="anqi6t8">
                                     <label
                                         className="block text-sm font-medium text-gray-700 mb-2"
-                                        data-oid="b9xe5o1"
+                                        data-oid="qf:o-:m"
                                     >
                                         음식 카테고리 *
                                     </label>
@@ -518,38 +518,38 @@ export default function AddPage() {
                                         }
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                                         required
-                                        data-oid=".1:gmak"
+                                        data-oid="nq.pmj7"
                                     >
-                                        <option value="" data-oid=":qhoog4">
+                                        <option value="" data-oid="x09xf3c">
                                             선택하세요
                                         </option>
-                                        <option value="한식" data-oid="7gxnjws">
+                                        <option value="한식" data-oid="9jetj6i">
                                             한식
                                         </option>
-                                        <option value="중식" data-oid="xy2_92n">
+                                        <option value="중식" data-oid=":9:b3s-">
                                             중식
                                         </option>
-                                        <option value="일식" data-oid="6brte:8">
+                                        <option value="일식" data-oid="jqbfd6i">
                                             일식
                                         </option>
-                                        <option value="양식" data-oid="pfincv8">
+                                        <option value="양식" data-oid=".nhxnmh">
                                             양식
                                         </option>
-                                        <option value="카페" data-oid="0bnsflk">
+                                        <option value="카페" data-oid="z4l-btx">
                                             카페
                                         </option>
-                                        <option value="패스트푸드" data-oid="ojckq1y">
+                                        <option value="패스트푸드" data-oid="wa1kus0">
                                             패스트푸드
                                         </option>
-                                        <option value="기타" data-oid="zmjb2x2">
+                                        <option value="기타" data-oid="aih84l_">
                                             기타
                                         </option>
                                     </select>
                                 </div>
-                                <div data-oid="x.8va:b">
+                                <div data-oid="83z3odc">
                                     <label
                                         className="block text-sm font-medium text-gray-700 mb-2"
-                                        data-oid="4bvi04y"
+                                        data-oid="uykobun"
                                     >
                                         타입 *
                                     </label>
@@ -563,26 +563,26 @@ export default function AddPage() {
                                         }
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                                         required
-                                        data-oid="_q-e_zp"
+                                        data-oid="a-jx6pb"
                                     >
-                                        <option value="" data-oid="fwc88fp">
+                                        <option value="" data-oid=".8:8v6.">
                                             선택하세요
                                         </option>
-                                        <option value="점심" data-oid=":7nvfkv">
+                                        <option value="점심" data-oid="6gyim1p">
                                             점심
                                         </option>
-                                        <option value="회식" data-oid="naut-88">
+                                        <option value="회식" data-oid="-3_9idj">
                                             회식
                                         </option>
-                                        <option value="카페" data-oid="on-vtwz">
+                                        <option value="카페" data-oid="xy9_5cb">
                                             카페
                                         </option>
                                     </select>
                                 </div>
-                                <div data-oid="oanv5su">
+                                <div data-oid="u4ipd30">
                                     <label
                                         className="block text-sm font-medium text-gray-700 mb-2"
-                                        data-oid="lyiyjks"
+                                        data-oid="kuok45e"
                                     >
                                         평균 가격대 *
                                     </label>
@@ -595,13 +595,13 @@ export default function AddPage() {
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                                         placeholder="예: 8,000원"
                                         required
-                                        data-oid="fjn.-l-"
+                                        data-oid="v5se5mz"
                                     />
                                 </div>
                             </div>
 
-                            <div className="mt-4" data-oid="243um_u">
-                                <label className="flex items-center gap-2" data-oid="e:i3g7z">
+                            <div className="mt-4" data-oid="3a2skwd">
+                                <label className="flex items-center gap-2" data-oid="wk-tizs">
                                     <input
                                         type="checkbox"
                                         checked={formData.hasZeroPay}
@@ -612,12 +612,12 @@ export default function AddPage() {
                                             })
                                         }
                                         className="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
-                                        data-oid="w4.mjla"
+                                        data-oid="30a123o"
                                     />
 
                                     <span
                                         className="text-sm font-medium text-gray-700"
-                                        data-oid="6q.hh-r"
+                                        data-oid="-8bb:aj"
                                     >
                                         제로페이 사용 가능
                                     </span>
@@ -626,8 +626,8 @@ export default function AddPage() {
                         </div>
 
                         {/* 가게 설명 */}
-                        <div className="bg-white rounded-lg shadow-sm p-6" data-oid="linx.za">
-                            <h2 className="text-xl font-bold text-gray-800 mb-4" data-oid="wtmyeh0">
+                        <div className="bg-white rounded-lg shadow-sm p-6" data-oid="8qilli_">
+                            <h2 className="text-xl font-bold text-gray-800 mb-4" data-oid="2v_8973">
                                 가게 설명
                             </h2>
                             <textarea
@@ -638,44 +638,44 @@ export default function AddPage() {
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                                 rows={4}
                                 placeholder="가게에 대한 간단한 설명을 입력하세요..."
-                                data-oid="boyv91y"
+                                data-oid="vxaqwxb"
                             />
                         </div>
 
                         {/* 사진 업로드 (현재는 파일 업로드만 가능, 실제 업로드는 별도 구현 필요) */}
-                        <div className="bg-white rounded-lg shadow-sm p-6" data-oid="24zod7g">
-                            <h2 className="text-xl font-bold text-gray-800 mb-4" data-oid="txev.rr">
+                        <div className="bg-white rounded-lg shadow-sm p-6" data-oid="vxk7mjy">
+                            <h2 className="text-xl font-bold text-gray-800 mb-4" data-oid="50tnked">
                                 사진 (선택사항)
                             </h2>
-                            <div className="mb-4" data-oid="g2v-0g:">
+                            <div className="mb-4" data-oid="ndg__9o">
                                 <input
                                     type="file"
                                     multiple
                                     accept="image/*"
                                     onChange={handlePhotoUpload}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
-                                    data-oid=":oxarl1"
+                                    data-oid="_2o1_4o"
                                 />
                             </div>
                             {formData.photos.length > 0 && (
                                 <div
                                     className="grid grid-cols-2 md:grid-cols-4 gap-4"
-                                    data-oid="7em761-"
+                                    data-oid="kq-zt69"
                                 >
                                     {formData.photos.map((photo, index) => (
-                                        <div key={index} className="relative" data-oid="dcj3nt_">
+                                        <div key={index} className="relative" data-oid="kwid7:o">
                                             <img
                                                 src={URL.createObjectURL(photo)}
                                                 alt={`업로드된 사진 ${index + 1}`}
                                                 className="w-full h-24 object-cover rounded-lg"
-                                                data-oid="ibhk6nj"
+                                                data-oid="tcjmwlp"
                                             />
 
                                             <button
                                                 type="button"
                                                 onClick={() => removePhoto(index)}
                                                 className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs hover:bg-red-600"
-                                                data-oid="1tm5d_5"
+                                                data-oid="3amsdn7"
                                             >
                                                 ×
                                             </button>
@@ -686,37 +686,37 @@ export default function AddPage() {
                         </div>
 
                         {/* 메뉴 정보 */}
-                        <div className="bg-white rounded-lg shadow-sm p-6" data-oid="i1pdy5t">
+                        <div className="bg-white rounded-lg shadow-sm p-6" data-oid="4oft:8e">
                             <div
                                 className="flex justify-between items-center mb-4"
-                                data-oid="pj1.q69"
+                                data-oid="dz64wmy"
                             >
-                                <h2 className="text-xl font-bold text-gray-800" data-oid="bkxgdki">
+                                <h2 className="text-xl font-bold text-gray-800" data-oid=".ugln:.">
                                     메뉴 정보
                                 </h2>
                                 <button
                                     type="button"
                                     onClick={addMenuItem}
                                     className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 text-sm"
-                                    data-oid="rubyq:-"
+                                    data-oid="xn-yziq"
                                 >
                                     메뉴 추가
                                 </button>
                             </div>
-                            <div className="space-y-4" data-oid="pom1-_4">
+                            <div className="space-y-4" data-oid="kyanocq">
                                 {formData.menuItems.map((item, index) => (
                                     <div
                                         key={index}
                                         className="border border-gray-200 rounded-lg p-4"
-                                        data-oid="0464k_g"
+                                        data-oid="3u7n72z"
                                     >
                                         <div
                                             className="flex justify-between items-center mb-3"
-                                            data-oid="qnw2gr4"
+                                            data-oid="8jnar:n"
                                         >
                                             <span
                                                 className="font-medium text-gray-700"
-                                                data-oid="egrdkmm"
+                                                data-oid="8x:w._."
                                             >
                                                 메뉴 {index + 1}
                                             </span>
@@ -725,7 +725,7 @@ export default function AddPage() {
                                                     type="button"
                                                     onClick={() => removeMenuItem(index)}
                                                     className="text-red-500 hover:text-red-700 text-sm"
-                                                    data-oid="xcq03oa"
+                                                    data-oid="kjk903_"
                                                 >
                                                     삭제
                                                 </button>
@@ -733,7 +733,7 @@ export default function AddPage() {
                                         </div>
                                         <div
                                             className="grid grid-cols-1 md:grid-cols-3 gap-3"
-                                            data-oid="v9he326"
+                                            data-oid="t5d4pv:"
                                         >
                                             <input
                                                 type="text"
@@ -743,7 +743,7 @@ export default function AddPage() {
                                                 }
                                                 className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                                                 placeholder="메뉴명"
-                                                data-oid="i3bkj3_"
+                                                data-oid="bct73rf"
                                             />
 
                                             <input
@@ -754,7 +754,7 @@ export default function AddPage() {
                                                 }
                                                 className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                                                 placeholder="가격 (예: 8,000원)"
-                                                data-oid="ol:_doh"
+                                                data-oid="hgluw3."
                                             />
 
                                             <input
@@ -769,7 +769,7 @@ export default function AddPage() {
                                                 }
                                                 className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                                                 placeholder="메뉴 설명 (선택사항)"
-                                                data-oid="m.x4utd"
+                                                data-oid="tm5eh.c"
                                             />
                                         </div>
                                     </div>
@@ -778,13 +778,13 @@ export default function AddPage() {
                         </div>
 
                         {/* 버튼 */}
-                        <div className="flex gap-4 justify-center" data-oid="pm4vefm">
+                        <div className="flex gap-4 justify-center" data-oid="84z2ke:">
                             <button
                                 type="button"
                                 onClick={handleCancel}
                                 disabled={isSubmitting}
                                 className="px-8 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium disabled:opacity-50"
-                                data-oid=":z-uxqs"
+                                data-oid="gy5o0lq"
                             >
                                 취소하기
                             </button>
@@ -792,7 +792,7 @@ export default function AddPage() {
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="px-8 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 font-medium disabled:opacity-50"
-                                data-oid="c2y6_vj"
+                                data-oid="ji_:bv7"
                             >
                                 {isSubmitting ? '등록 중...' : '등록하기'}
                             </button>

@@ -1,5 +1,6 @@
 import type {
     ApiResponse,
+    MenuItem,
     PaginatedResponse,
     Restaurant,
     RestaurantDetail,
@@ -231,28 +232,18 @@ export async function createRestaurant(
     }
 }
 
-// 레스토랑 업데이트
+// 레스토랑 업데이트 (누구나 수정 가능)
 export async function updateRestaurant(
     id: number,
     updates: Partial<RestaurantFormData>,
     userId: string,
 ): Promise<ApiResponse<Restaurant>> {
     try {
-        // 권한 확인
-        const { data: restaurant, error: checkError } = await supabase
-            .from('restaurants')
-            .select('created_by')
-            .eq('id', id)
-            .single();
-
-        if (checkError) {
-            throw new Error(checkError.message);
-        }
-
-        if (restaurant.created_by !== userId) {
+        // 인증된 사용자 확인만 진행 (권한 체크 제거)
+        if (!userId) {
             return {
                 success: false,
-                error: ERROR_MESSAGES.FORBIDDEN,
+                error: '로그인이 필요합니다.',
             };
         }
 
@@ -263,8 +254,8 @@ export async function updateRestaurant(
         if (updates.type) updateData.type = updates.type;
         if (updates.avgPrice) updateData.avg_price = updates.avgPrice;
         if (updates.hasZeroPay !== undefined) updateData.has_zero_pay = updates.hasZeroPay;
-        if (updates.description) updateData.description = updates.description;
-        if (updates.phone) updateData.phone = updates.phone;
+        if (updates.description !== undefined) updateData.description = updates.description;
+        if (updates.phone !== undefined) updateData.phone = updates.phone;
 
         const { data, error } = await supabase
             .from('restaurants')
@@ -356,6 +347,61 @@ export async function getNearbyRestaurants(
         return {
             success: true,
             data: data || [],
+        };
+    } catch (error: any) {
+        return {
+            success: false,
+            error: error.message || ERROR_MESSAGES.SERVER_ERROR,
+        };
+    }
+}
+
+// 메뉴 아이템 추가
+export async function addMenuItem(
+    restaurantId: number,
+    menuData: { name: string; price: string; description?: string },
+): Promise<ApiResponse<MenuItem>> {
+    try {
+        const { data, error } = await supabase
+            .from('menu_items')
+            .insert({
+                restaurant_id: restaurantId,
+                name: menuData.name,
+                price: menuData.price,
+                description: menuData.description || null,
+            })
+            .select()
+            .single();
+
+        if (error) {
+            throw new Error(error.message);
+        }
+
+        return {
+            success: true,
+            message: '메뉴가 추가되었습니다.',
+            data,
+        };
+    } catch (error: any) {
+        return {
+            success: false,
+            error: error.message || ERROR_MESSAGES.SERVER_ERROR,
+        };
+    }
+}
+
+// 메뉴 아이템 삭제
+export async function deleteMenuItem(menuItemId: number): Promise<ApiResponse<null>> {
+    try {
+        const { error } = await supabase.from('menu_items').delete().eq('id', menuItemId);
+
+        if (error) {
+            throw new Error(error.message);
+        }
+
+        return {
+            success: true,
+            message: '메뉴가 삭제되었습니다.',
         };
     } catch (error: any) {
         return {
